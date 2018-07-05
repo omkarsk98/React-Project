@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button, UncontrolledAlert } from 'reactstrap';
 
 export default class ReachOut extends React.Component {
     constructor(props) {
@@ -22,11 +22,11 @@ export default class ReachOut extends React.Component {
     }
     add(event) {
         event.preventDefault();
-        axios.post("http://localhost:3001/reachOut", { value: [ this.state.name, this.state.message ] }).then(result => {
+        axios.post("http://localhost:3001/reachOut", { value: [this.state.name, this.state.message] }).then(result => {
             return result.data;
         }).then(data => {
             this.setState({
-                reply: data
+                reply: data                
             });
         }).catch(err => {
             console.log(err);
@@ -46,8 +46,16 @@ export default class ReachOut extends React.Component {
                     </FormGroup>
                     <Button color='success' className='float-left' onClick={this.add}>Submit</Button>
                 </Form>
-                <br />
-                {this.state.reply}
+                <br /><br />
+                {(() => {
+                    if (this.state.reply !== '') {
+                        return (
+                            <UncontrolledAlert color="primary">
+                                {this.state.reply}
+                            </UncontrolledAlert>
+                        );
+                    }
+                })()}
             </div>
         );
     }

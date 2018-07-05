@@ -2,16 +2,16 @@ import React from 'react';
 import axios from "axios";
 import { Button } from 'reactstrap';
 
-class Home extends React.Component {
+export default class Friends extends React.Component {
 	constructor(props) {
 		super(props);
-		this.x = this.x.bind(this);
+		this.friend = this.friend.bind(this);
 		this.state = {
-			user: 'Hey'
+			status: ''
 		}
 	}
-	x(e) {
-		axios.get("http://localhost:3001/users").then(result => {
+	friend(e) {
+		axios.get("http://localhost:3001/friends").then(result => {
 			return result.data;
 		}).then(data => {
 			this.setState({
@@ -21,19 +21,16 @@ class Home extends React.Component {
 			console.log(err);
 		});
 	}
-	
 	render () {
 		return (
 			<div>
 				<h2>Home</h2>
 				<p>Some description about home in this section</p>
 				<p>Hello.. <br/>This is just to give an example.<br/>Simply to fill up the lines..</p>
-				<Button color='danger' onClick={this.x}>Programmer</Button>
-				<br /><br />
-				{this.state.user}
+				<Button color='success' onClick={this.friend}>Show Friend</Button>
+				<br /><br /><br />
+				{this.state.status}
 			</div>
 		);
 	}
 }
-
-export default Home;

@@ -1,9 +1,11 @@
 import React from 'react';
 import { Grid } from 'semantic-ui-react';
+import InstagramEmbed from 'react-instagram-embed';
+import { Row, Col } from 'reactstrap';
 
 class ProfileFinal extends React.Component {
 	render() {
-		return(
+		return (
 			<div class="ui container">
 				<div class="ui center aligned black raised segment">
 					<b>omkarsk98</b>
@@ -15,13 +17,7 @@ class ProfileFinal extends React.Component {
 								<b>
 									Omkar Kulkarni
 								</b>
-								<img class="ui centered circular image" src='https://u.o0bc.com/avatars/no-user-image.gif' alt=""/>
-							</div>
-							<div class="ui center aligned green raised segment">
-								<b>STATUS</b>
-								<div>
-									Active 4 hours ago.
-								</div>
+								<img class="ui centered circular image" src='https://u.o0bc.com/avatars/no-user-image.gif' alt="" />
 							</div>
 						</Grid.Column>
 						<Grid.Column mobile={16} tablet={8} computer={8}>
@@ -54,7 +50,7 @@ class ProfileFinal extends React.Component {
 												</b>
 											</td>
 											<td class="center aligned">
-												Manipal University Jaipur     
+												Manipal University Jaipur
 											</td>
 											<td class="center aligned">
 												<b>
@@ -101,6 +97,51 @@ class ProfileFinal extends React.Component {
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>
+				<br />
+				<Row>
+					<Col xs='6' sm='4' >
+						<InstagramEmbed
+							url='https://www.instagram.com/p/Bjg2QLkBqlJ/?taken-by=o.m.kar'
+							maxWidth={100}
+							hideCaption={true}
+							containerTagName='div'
+							protocol=''
+							injectScript
+							onLoading={() => { }}
+							onSuccess={() => { }}
+							onAfterRender={() => { }}
+							onFailure={() => { }}
+						/>
+					</Col>
+					<Col xs='6' sm='4'>
+						<InstagramEmbed
+							url='https://www.instagram.com/p/BjeHzXkhmaj/?taken-by=o.m.kar'
+							maxWidth={100}
+							hideCaption={true}
+							containerTagName='div'
+							protocol=''
+							injectScript
+							onLoading={() => { }}
+							onSuccess={() => { }}
+							onAfterRender={() => { }}
+							onFailure={() => { }}
+						/>
+					</Col>
+					<Col xs='6' sm='4'>
+						<InstagramEmbed
+							url='https://www.instagram.com/p/BjAcGvqBvMX/?taken-by=o.m.kar'
+							maxWidth={100}
+							hideCaption={true}
+							containerTagName='div'
+							protocol=''
+							injectScript
+							onLoading={() => { }}
+							onSuccess={() => { }}
+							onAfterRender={() => { }}
+							onFailure={() => { }}
+						/>
+					</Col>
+				</Row>
 			</div>
 		);
 	}

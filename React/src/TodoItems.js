@@ -1,6 +1,6 @@
 //This Component is for listing the tasks
 import React from "react";
-import { Segment, Button } from 'semantic-ui-react';
+import { Segment, Button } from 'semantic-ui-react/dist/commonjs';
  
 class TodoItems extends React.Component {
 	constructor(props, context) {

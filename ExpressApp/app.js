@@ -9,6 +9,8 @@ var usersRouter = require('./routes/users');
 var friendsRouter = require('./routes/friends');
 var reachOutRouter = require('./routes/reachout');
 var IPRouter = require('./routes/ip');
+var OTPRouter = require('./routes/otp');
+var signupRouter = require('./routes/signup');
 
 var app = express();
 
@@ -48,6 +50,8 @@ app.use('/users', usersRouter);
 app.use('/friends', friendsRouter);
 app.use('/reachOut', reachOutRouter);
 app.use('/ip', IPRouter);
+app.use('/otp', OTPRouter);
+app.use('/signup', signupRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

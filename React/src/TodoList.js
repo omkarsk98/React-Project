@@ -1,6 +1,6 @@
 import React from "react";
 import TodoItems from "./TodoItems";
-import { Segment, Button, Form } from 'semantic-ui-react';
+import { Segment, Button, Form } from 'semantic-ui-react/dist/commonjs';
 
 class TodoList extends React.Component {
 	constructor(props, context) {

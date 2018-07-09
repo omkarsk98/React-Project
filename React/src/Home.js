@@ -13,7 +13,7 @@ class Home extends React.Component {
 		
 	}
 	componentDidMount(){
-		axios.get("http://192.168.1.102:3001/ip").then(result => {
+		axios.get("http://localhost:3001/ip").then(result => {
 			return result.data;
 		}).then(data => {
 			this.setState({

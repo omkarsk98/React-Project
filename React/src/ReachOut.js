@@ -26,7 +26,7 @@ export default class ReachOut extends React.Component {
             return result.data;
         }).then(data => {
             this.setState({
-                reply: data                
+                reply: data
             });
         }).catch(err => {
             console.log(err);
@@ -34,7 +34,7 @@ export default class ReachOut extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div padding="20px">
                 <Form>
                     <FormGroup>
                         <Label for="Name">Name:</Label>

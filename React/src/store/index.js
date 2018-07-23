@@ -1,4 +1,6 @@
 import { createStore } from 'redux';
+
+//defining th initial state
 const initialState = {
     count: 3
 };

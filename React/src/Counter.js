@@ -13,21 +13,24 @@ function Counter(props) {
     );
 }
 
+
+//Step1
 function mapStateToProps(state) {
     //console.log('Mapping state to props-->', state);
     return {
         count: state.count
     }
-}
+}//to return state
 
+//Step 2
 function mapDispatchToProps(dispatch) {
+    //console.log('Dispatch-->',dispatch);
     return {
         onIncrementClick: () => {
-            //console.log('Clicking');
             const action = { type : 'INCREMENT'};
             dispatch(action);
         }
-    }
-}
+    }//this is an action dispatched by dispatch(action);
+}//to return action
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);

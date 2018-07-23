@@ -12,7 +12,7 @@ var con1 = new Connection({
 
 router.post('/', function (req, res, next) {
     // res.send('respond with a resource');
-    console.log(req.body);
+    //console.log(req.body);
     let otp = Math.floor(Math.random() * (999998 - 111111 + 1) + 1);
     let mail = new Mail({
         host: 'smtp.gmail.com',
@@ -29,7 +29,8 @@ router.post('/', function (req, res, next) {
         text: 'Please check your otp',
         html: `<p>We received your request for signup. Your 6 digit OTP is ${otp}</p>`
     }).then()
-    .catch();
+        .catch();
+    console.log(req.body);
     con1.query('insert into signups(username,email,password) values (?,?,?);', [req.body.username, req.body.email, req.body.password])
         .then(console.log('Inserted')).catch();
     res.status(200).json({ otp });

@@ -2,6 +2,8 @@ import React from 'react';
 import axios from "axios";
 import { Form, FormGroup, Label, Input, Button, UncontrolledAlert } from 'reactstrap';
 
+const server = require('./serverip');
+
 export default class ReachOut extends React.Component {
     constructor(props) {
         super(props);
@@ -22,7 +24,7 @@ export default class ReachOut extends React.Component {
     }
     add(event) {
         event.preventDefault();
-        axios.post("http://localhost:3001/reachOut", { value: [this.state.name, this.state.message] }).then(result => {
+        axios.post("http://"+server.ip+":3001/reachOut", { value: [this.state.name, this.state.message] }).then(result => {
             return result.data;
         }).then(data => {
             this.setState({

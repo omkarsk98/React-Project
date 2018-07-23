@@ -13,7 +13,7 @@ var con1 = new Connection({
 router.post('/', function (req, res, next) {
     con1.query('update signups set isVerified=true where username=?;', [req.body.username])
     .then().catch();
-    res.status(200);
+    res.status(200).send('verified');
 });
 
 module.exports = router;

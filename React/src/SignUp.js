@@ -1,10 +1,13 @@
 import React from 'react';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button, Alert } from 'reactstrap';
 import axios from "axios";
+
+const server = require('./serverip');
 
 var style = {
     padding: '20px',
-    textAlign: 'center'
+    textAlign: 'center',
+    margin: '10px'
 }
 
 var button = {
@@ -25,7 +28,7 @@ export default class Login extends React.Component {
             formFilled: false,
             username: '',
             pass: '',
-            result:''
+            result: ''
         }
     }
     addEmail(event) {
@@ -38,7 +41,7 @@ export default class Login extends React.Component {
         this.setState({ pass: event.target.value })
     }
     verify(e) {//this will receive otp
-        axios.post("http://localhost:3001/otp", { username: this.state.username, email: this.state.mail, password: this.state.pass }).then(result => {
+        axios.post("http://" + server.ip + ":3001/otp", { username: this.state.username, email: this.state.mail, password: this.state.pass }).then(result => {
             return result.data;
         }).then(data => {
             this.setState({
@@ -52,15 +55,12 @@ export default class Login extends React.Component {
     validate() {
         let check = document.getElementById('otp').value;
         if (this.state.otp == check) {
-            axios.post("http://localhost:3001/signup", { username:this.state.username, verified:true }).then(result => {
+            axios.post("http://" + server.ip + ":3001/signup", { username: this.state.username, verified: true }).then(result => {
                 return result.data;
-            }).then(data => {
-                this.setState({
-                    otp: data.otp
+            }).then(() => this.setState({ result: 'verified' }))
+                .catch(err => {
+                    console.log(err);
                 });
-            }).catch(err => {
-                console.log(err);
-            });
         }
     }
     render() {
@@ -86,7 +86,7 @@ export default class Login extends React.Component {
                             </Form>
                         );
                     }
-                    else if(this.state.formFilled && !this.state.result){
+                    else if (this.state.formFilled && !this.state.result) {
                         return (
                             <div style={style}>
                                 6 digit OTP sent to your email.
@@ -98,10 +98,13 @@ export default class Login extends React.Component {
                             </div>
                         );
                     }
-                    if(this.state.formFilled && this.state.result){
-                        return(
+                    if (this.state.formFilled && this.state.result) {
+                        return (
                             <div>
-                                Thank you for signup!
+                                <Alert color="success" style={style}>
+                                    Thank you for signup!
+                                    {this.state.ip}
+                                </Alert>
                             </div>
                         )
                     }

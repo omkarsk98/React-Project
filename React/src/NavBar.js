@@ -84,7 +84,13 @@ export default class NavBar extends React.Component {
 					->Signup by setting username, email, password and confirm password.
 					->Send otp on email and validate it. 
 					->Set email expiry time as 5 minutes.
-					
+					done with the above steps
+
+					print user name after login
+					-->check if credentials are corect
+					-->if no.. print incorrect credentials..
+					-->if yes.. route to domain/username and print username
+
 				*/}
 			</Container>
 

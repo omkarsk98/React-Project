@@ -21,7 +21,7 @@ class Home extends React.Component {
 		axios.get("http://" + server.ip + ":3001/ip").then(result => {
 			return result.data;
 		}).then(data => {
-			console.log(data);
+			console.log("Local ip as ",data);
 			this.setState({
 				local_ip: data.local_ip,
 				external_ip: data.external
@@ -35,8 +35,9 @@ class Home extends React.Component {
 			return result.data;
 		}).then(data => {
 			this.setState({
-				user: data
-			})
+				user: data.user
+			});
+			//console.log(data);
 		}).catch(err => {
 			console.log(err);
 		});
@@ -46,9 +47,11 @@ class Home extends React.Component {
 		return (
 			<div>
 				{
-					//request coming from ..... ip address
-					//add something from facebook
-					//add something from instagram
+					//request coming from ip address
+					// 	--getting local ip
+					// 	try finding public ip
+					//add something from facebook--not possible
+					//add something from instagram--done
 
 				}
 				<Alert color="danger">

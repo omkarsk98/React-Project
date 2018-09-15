@@ -14,7 +14,7 @@ con.connect(function(err){
 
 /* GET users listing. */
 router.post('/', function (req, res, next) {
-    con.query('insert into messages values(?,?)',[req.body.value[0],req.body.value[1]],function(err, result){
+    con.query('insert into messages values(?,?)',[req.body.name,req.body.message],function(err, result){
         if(err) throw err;
     })
     res.status(200).send('Message received. Thank you for the help.');

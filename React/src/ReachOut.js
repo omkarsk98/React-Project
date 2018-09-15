@@ -24,7 +24,7 @@ export default class ReachOut extends React.Component {
     }
     add(event) {
         event.preventDefault();
-        axios.post("http://"+server.ip+":3001/reachOut", { value: [this.state.name, this.state.message] }).then(result => {
+        axios.post("http://" + server.ip + ":3001/reachOut", { name: this.state.name, message: this.state.message }).then(result => {
             return result.data;
         }).then(data => {
             this.setState({

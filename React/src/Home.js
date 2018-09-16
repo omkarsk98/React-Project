@@ -13,7 +13,7 @@ class Home extends React.Component {
 		this.state = {
 			user: 'Hey',
 			local_ip: '',
-			external_ip: ''
+			host: ''
 		}
 
 	}
@@ -24,7 +24,7 @@ class Home extends React.Component {
 			console.log("Local ip as ",data);
 			this.setState({
 				local_ip: data.local_ip,
-				external_ip: data.external
+				host: data.host
 			})
 		}).catch(err => {
 			console.log(err);
@@ -57,6 +57,8 @@ class Home extends React.Component {
 				<Alert color="danger">
 					<h2>Your current IP address</h2>
 					Local IP:{this.state.local_ip}
+					<br/>
+					User OS:{this.state.host}
 					{/* <br/>
 					External IP:{this.state.external_ip} */}
 				</Alert>

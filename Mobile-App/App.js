@@ -3,7 +3,7 @@ import { StyleSheet, Text, ScrollView, View } from 'react-native';
 import HelloWorld from './components/HelloWorld';
 import Login from './components/Login';
 import PlayingWithStyles from './components/Styles';
-const server = require('./serverip');
+// const server = require('./serverip');
 
 export default class App extends React.Component {
   constructor(props) {
@@ -12,17 +12,17 @@ export default class App extends React.Component {
       ip: 'hey'
     }
   }
-  componentWillMount() {
-    fetch('http://' + server.ip + ':3001/ip', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
-  }
+  // componentWillMount() {
+  //   fetch('http://192.168.43.145:3001/ip', {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then(res => console.log(res))
+  //     .catch(err => console.log(err));
+  // }
   render() {
 
     return (

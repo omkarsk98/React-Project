@@ -19,15 +19,15 @@ router.post('/', function (req, res, next) {
         port: 587,
         secure: false,
         auth: {
-            user: 'omkarsk@asort.com',
-            pass: 'asort@password'
+            user: 'omkarsk98@gmail.com',
+            pass: 'dont@forget30198'
         }
     });
     mail.sendMail({
         to: req.body.email,
         subject: 'OTP Confirmation',
         text: 'Please check your otp',
-        html: `<p>We received your request for signup. Your 6 digit OTP is ${otp}</p>`
+        html: `<p>We received your request for signup. Your OTP is ${otp}</p>`
     }).then()
         .catch();
     console.log(req.body);

@@ -3,6 +3,7 @@ import axios from "axios";
 import Counter from './Counter.js'
 import store from './store/';
 import { Button, Alert } from 'reactstrap';
+import {Offline, Online} from 'react-detect-offline';
 const server = require('./serverip');
 
 
@@ -59,6 +60,10 @@ class Home extends React.Component {
 					Local IP:{this.state.local_ip}
 					<br/>
 					User OS:{this.state.host}
+					<br/>
+					<Online><b>You are Online..</b></Online>
+					<Offline><b>You are Offline..</b></Offline>
+					<br/>
 					{/* <br/>
 					External IP:{this.state.external_ip} */}
 				</Alert>

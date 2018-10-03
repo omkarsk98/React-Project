@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, ScrollView, View } from 'react-native';
 import HelloWorld from './components/HelloWorld';
 import Login from './components/Login';
+import Increment from './components/Increment';
 import PlayingWithStyles from './components/Styles';
 // const server = require('./serverip');
 
@@ -31,6 +32,7 @@ export default class App extends React.Component {
         <HelloWorld />
         <PlayingWithStyles />
         <Login />
+        <Increment />
       </ScrollView>
     );
   }

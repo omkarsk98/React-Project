@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { View, StyleSheet, TextInput, Text } from "react-native";
+import {
+  TouchableOpacity,
+  View,
+  Alert,
+  AsyncStorage,
+  StyleSheet,
+  TextInput,
+  Text
+} from "react-native";
 
 class Main extends Component {
   static navigationOptions = {
@@ -8,14 +16,23 @@ class Main extends Component {
   state = {
     name: ""
   };
+  async componentWillMount() {
+    if ((await AsyncStorage.getItem("username")) != "")
+      this.props.navigation.navigate("Chat");
+  }
+  navigateToNextPage = () => {
+    if (!this.state.name) Alert.alert("Warning", "Please set username.");
+    else this.props.navigation.navigate("Chat");
+  };
   render() {
     return (
       <View
         style={{
           flex: 1,
           flexDirection: "column",
-          justifyContent: "flex-start",
-          alignItems: "stretch"
+          justifyContent: "center",
+          alignItems: "stretch",
+          padding: 15
         }}
       >
         <View
@@ -26,7 +43,7 @@ class Main extends Component {
             alignItems: "center"
           }}
         >
-          <Text style={{ flex: 0.3, fontSize: 20, fontWeight: "bold" }}>
+          <Text style={{ flex: 0.4, fontSize: 20, fontWeight: "bold" }}>
             Username:
           </Text>
           <TextInput
@@ -36,10 +53,34 @@ class Main extends Component {
               flex: 0.7
             }}
             placeHolder="Username"
-            onChangeText={name => {
+            onChangeText={async name => {
               this.setState({ name });
+              await AsyncStorage.setItem("username", name);
             }}
           />
+        </View>
+        <View style={{ flex: 0.2 }}>
+          <TouchableOpacity
+            onPress={this.navigateToNextPage}
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Text
+              style={{
+                backgroundColor: "#008CBA",
+                padding: 10,
+                borderRadius: 15,
+                marginLeft: 24,
+                fontSize: 24
+              }}
+            >
+              Next
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     );

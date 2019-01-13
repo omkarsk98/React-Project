@@ -13,11 +13,29 @@ import {
 import DeviceInfo from "react-native-device-info";
 import wifi from "react-native-android-wifi";
 import BackgroundJob from "react-native-background-job";
+import {createStore} from 'redux';
+import CounterApp from './src/CounterApp';
+import {Provider} from 'react-redux';
+
+const initialState = {
+  counter:0
+}
+
+const reducer = (state = initialState, action) => {
+  switch(action.type){
+    case 'INCREASE_COUNTER':
+      return{counter:state.counter+1}
+    case 'DECREASE_COUNTER':
+      return{counter:state.counter-1}
+  }
+  return state;
+}
+const store = createStore(reducer)
 
 async function handleConnectivityChange(connectionInfo) {
   console.log("Network Change detected: " + connectionInfo.type);
-  if (await AsyncStorage.getItem('networkStatus') != connectionInfo.type)
-    await AsyncStorage.setItem('networkStatus', connectionInfo.type)
+  if ((await AsyncStorage.getItem("networkStatus")) != connectionInfo.type)
+    await AsyncStorage.setItem("networkStatus", connectionInfo.type);
 }
 
 let networkStatus = "";
@@ -32,10 +50,10 @@ BackgroundJob.register({
   job: async () => {
     let i = 1;
     await AsyncStorage.setItem("networkStatus", i.toString());
-    console.log("Network Status:",await AsyncStorage.getItem('networkStatus'));
+    console.log("Network Status:", await AsyncStorage.getItem("networkStatus"));
     //console.log("Network Status as:", await AsyncStorage.getItem('networkStatus'));
     Vibration.vibrate(100);
-    i+=1;
+    i += 1;
     // NetInfo.getConnectionInfo().then(connectionInfo => {
     //   console.log("Connection Info as:",connectionInfo.type,"and network status as:",networkStatus);
     //   if (connectionInfo.type != networkStatus) {
@@ -58,7 +76,8 @@ export default class App extends React.Component {
     IP: "",
     SSID: "",
     systemVersion: DeviceInfo.getSystemVersion(),
-    networkState: ""
+    networkState: "",
+    counter:0
     // batteryLevel: DeviceInfo.getBatteryLevel()
   };
   async getPermission() {
@@ -119,7 +138,10 @@ export default class App extends React.Component {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            NetInfo.addEventListener("connectionChange", handleConnectivityChange);
+            NetInfo.addEventListener(
+              "connectionChange",
+              handleConnectivityChange
+            );
             BackgroundJob.schedule({
               jobKey: "myJob",
               period: 1000,
@@ -129,6 +151,9 @@ export default class App extends React.Component {
         >
           <Text>Schedule</Text>
         </TouchableOpacity>
+        <Provider store={store}>
+          <CounterApp />
+        </Provider>
         {/* <TouchableOpacity
           style={styles.button}
           onPress={() => {
@@ -141,6 +166,7 @@ export default class App extends React.Component {
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
